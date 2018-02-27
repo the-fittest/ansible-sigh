@@ -1,0 +1,29 @@
+# Molecule managed
+
+---
+package:
+  sigh:
+    installed: true
+port:
+  tcp:4000:
+    listening: true
+    ip:
+      - 127.0.0.1
+service:
+  sigh:
+    enabled: true
+    running: true
+user:
+  sigh:
+    exists: true
+    groups:
+      - sigh
+      - ssl-cert
+    home: /home/sigh
+    shell: ""
+group:
+  sigh:
+    exists: true
+process:
+  sigh:
+    running: true

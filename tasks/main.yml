@@ -1,0 +1,111 @@
+---
+# tasks file for sigh
+
+- name: Install dependencies
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - "{{ sigh_packages }}"
+    - "{{ sigh_additional_packages }}"
+  tags:
+    - package
+    - sigh
+
+- name: Copy sigh deb package
+  copy:
+    src: "{{ item }}"
+    dest: "/var/tmp/{{ sigh_package | basename }}"
+  with_items:
+    - "{{ sigh_package }}"
+  tags:
+    - package
+    - sigh
+
+- name: Install a sigh package
+  apt:
+    deb: "/var/tmp/{{ sigh_package | basename }}"
+    state: present
+  tags:
+    - package
+    - sigh
+
+- name: Add or remove groups
+  group:
+    name: sigh
+    system: yes
+    state: present
+  tags:
+    - config
+    - sigh
+
+- name: Create sigh user
+  user:
+    name: sigh
+    group: sigh
+    groups: ssl-cert
+    append: yes
+    system: yes
+    state: present
+  tags:
+    - config
+    - sigh
+
+- name: Create tmp and pid directory
+  file:
+    path: "{{ item }}"
+    owner: sigh
+    group: sigh
+    state: directory
+  with_items:
+    - /var/lib/sigh
+    - /var/run/sigh
+  tags:
+    - config
+    - sigh
+
+- name: Create config directory
+  file:
+    path: /etc/sigh
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+  tags:
+    - config
+    - sigh
+
+- name: Create config files
+  template:
+    src: "{{ item }}"
+    dest: "/etc/sigh/{{ item | basename | replace('.j2', '') }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - "{{ sigh_config_files }}"
+    - "{{ sigh_additional_config_files }}"
+  notify: restart sigh
+  tags:
+    - config
+    - sigh
+
+- name: Write start script
+  template:
+    src: "systemd.j2"
+    dest: "/etc/systemd/system/sigh.service"
+    owner: root
+    group: root
+    mode: 0644
+  tags:
+    - config
+    - sigh
+
+- name: Start and enabled
+  service:
+    name: sigh
+    enabled: yes
+    state: started
+  tags:
+    - service
+    - sigh

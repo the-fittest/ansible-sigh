@@ -1,0 +1,17 @@
+---
+# handlers file for sigh
+
+- name: start sigh
+  service:
+    name: sigh
+    state: started
+
+- name: stop sigh
+  service:
+    name: sigh
+    state: stopped
+
+- name: restart sigh
+  service:
+    name: sigh
+    state: restarted

@@ -1,0 +1,10 @@
+# {{ ansible_managed }}
+
+# Generate cert from pkcs12
+# openssl pkcs12 -in path.p12 -out newfile.crt.pem -clcerts -nokeys
+# Generate key from pkcs12
+# openssl pkcs12 -in path.p12 -out newfile.key.pem -nocerts -nodes
+
+{%   for property in sigh_sender_certificate_map -%}
+{{ property.email }}         key:{{ property.key }},cert:{{ property.cert }}
+{%   endfor %}

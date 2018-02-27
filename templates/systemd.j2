@@ -1,0 +1,10 @@
+[Unit]
+Description=sigh
+After=syslog.target
+
+[Service]
+ExecStart=/usr/local/sbin/sigh
+User=sigh
+
+[Install]
+WantedBy=multi-user.target

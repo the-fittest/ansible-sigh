@@ -1,0 +1,23 @@
+---
+# defaults file for sigh
+
+sigh_packages:
+  - libmilter1.0.1
+  - openssl
+  - libboost-system1.58.0
+  - libboost-filesystem1.58.0
+  - libboost-program-options1.58.0
+  - libssl1.0.0
+
+sigh_additional_packages: []
+
+sigh_package: sigh_1607.1.6-1_amd64.deb
+
+sigh_config_files:
+  - mapfile.txt.j2
+  - sigh.cfg.j2
+
+sigh_additional_config_files: []
+
+sigh_sender_certificate_map: []
+# - { email: 'test@example.com', key: '/path/to/key', cert: '/path/to/cert' }
