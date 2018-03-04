@@ -13,7 +13,8 @@
   },
   "homepage": "https://github.com/brandfrisch/sigh#readme",
   "scripts": {
-    "commitmsg": "commitlint -e $GIT_PARAMS"
+    "commitmsg": "commitlint -e ",
+    "precommit": "yamllint . && ansible-lint ."
   },
   "commitlint": {
     "extends": [
