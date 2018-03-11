@@ -23,9 +23,9 @@ Test Playbook
 
 If you want to know what is tested through [molecule](https://molecule.readthedocs.io/en/master/) see:
 
-- `molecule.yml` for OSes we test against
-- `playbook.yml` for what is being run in the test
-- `tests/test_default.yml` for the [goss](https://goss.rocks) verfier
+- `molecule/default/molecule.yml` for OSes we test against
+- `molecule/default/playbook.yml` for what is being run in the test
+- `molecule/default/tests/test_default.yml` for the [goss](https://goss.rocks) verfier
 
 
 Quote

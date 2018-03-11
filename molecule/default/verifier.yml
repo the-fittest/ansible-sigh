@@ -1,13 +1,4 @@
 ---
-# This is an example playbook to execute goss tests.
-# Tests need distributed to the appropriate ansible host/groups
-# prior to execution by `goss validate`.
-#
-# The goss ansible module is installed with molecule.  The ANSIBLE_LIBRARY
-# path is updated appropriately on `molecule verify`.
-
-# Details about ansible module:
-#  - https://github.com/indusbox/goss-ansible
 
 - name: Verify
   hosts: all

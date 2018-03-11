@@ -24,6 +24,12 @@ jobs:
             pip install virtualenv
 
       - run:
+          name: "Checkout ansible-lint"
+          command: |
+            git clone git@github.com:lxhunter/ansible-lint.git /tmp/ansible-lint
+            sudo mv /tmp/ansible-lint /usr/local/src
+
+      - run:
           name: "Write daily cache key"
           command: |
             date +%F > ~/.daily_cache_key

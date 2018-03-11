@@ -19,7 +19,7 @@ provisioner:
   lint:
     name: ansible-lint
     options:
-      r: /usr/local/src/ansible-lint-rules
+      r: /usr/local/src/ansible-lint/rules
 scenario:
   name: default
 verifier:

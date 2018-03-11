@@ -16,6 +16,9 @@
   copy:
     src: "{{ item }}"
     dest: "/var/tmp/{{ sigh_package | basename }}"
+    owner: root
+    group: root
+    mode: 0644
   with_items:
     - "{{ sigh_package }}"
   tags:
@@ -56,6 +59,7 @@
     path: "{{ item }}"
     owner: sigh
     group: sigh
+    mode: 0750
     state: directory
   with_items:
     - /var/lib/sigh
