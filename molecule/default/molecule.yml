@@ -19,8 +19,11 @@ provisioner:
   lint:
     name: ansible-lint
     options:
-      r: /usr/local/src/ansible-lint/rules
+      R: true
+      r: ./node_modules/ansible-lint-rules/rules
 scenario:
   name: default
 verifier:
   name: goss
+  lint:
+    name: yamllint
